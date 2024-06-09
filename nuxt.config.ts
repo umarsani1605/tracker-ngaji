@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     'primevue/resources/themes/aura-light-green/theme.css',
     './assets/css/tailwind.css',
   ],
-  modules: ["nuxt-primevue", '@nuxtjs/tailwindcss'],
+  modules: ["nuxt-primevue", '@nuxtjs/tailwindcss', '@nuxtjs/supabase'],
   primevue: {
     options: {
       ripple: true,

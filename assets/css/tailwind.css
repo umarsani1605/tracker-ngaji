@@ -35,6 +35,9 @@
     --primary-highlight-opacity: 0.1;
     --primary-highlight-inverse: var(--primary-700);
     --primary-highlight-hover-opacity: 0.2;
+
+    --card-shadow: 0px 4px 30px rgba(221, 224, 255, .54);
+    --surface-border: #e2e8f0;
 }
 .dark{
     --primary: var(--primary-400);
@@ -71,6 +74,6 @@
     }
 }
 
-.body {
-    background-color: #f8fafc;
+body {
+    background-color: #f4f6fc;
 }
