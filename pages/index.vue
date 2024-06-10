@@ -1,21 +1,20 @@
-
 <script setup>
-  import { supabase } from '../utils/supabase'
-  const todos = ref([])
+import { supabase } from '../utils/supabase'
 
-  async function getTodos() {
-    const { data } = await supabase.from('todos').select()
-    todos.value = data
-  }
+const santri = ref([])
 
-  onMounted(() => {
-    getTodos()
-  })
+async function getTodos() {
+  const { data } = await supabase.from('santri').select()
+  santri.value = data
+  console.log("tes" + santri.value);
+}
+
+onMounted(() => {
+  getTodos()
+})
 
 </script>
 
 <template>
-  <ul>
-    <li v-for="todo in todos" :key="todo.id">{{ todo.name }}</li>
-  </ul>
+
 </template>

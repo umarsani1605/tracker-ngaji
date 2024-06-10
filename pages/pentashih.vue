@@ -1,3 +1,47 @@
+<script setup>
+import { ref, watch } from 'vue';
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient('https://kjtahivuqviyrmjpjszd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqdGFoaXZ1cXZpeXJtanBqc3pkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc2NzE4NjgsImV4cCI6MjAzMzI0Nzg2OH0.RoWJ7pMr-K01h3iAzQ3bQbuQC5tNk7scoFcaMjPExbM')
+
+const date = ref(null);
+
+const dropdownValue = ref(null);
+
+const dropdownValues = ref([
+  { name: 'Tidak Tercapai' },
+  { name: 'Tercapai' }
+]);
+
+const form = ref({
+  pentashih: '',
+  santri: '',
+  code: '',
+  date: '',
+});
+
+const subject = ref({
+  alquran: '',
+  sholat_wudhu: '',
+  tahlil_wirid: '',
+});
+
+const sub = ref([])
+
+async function getSubject() {
+  
+  let { data, error } = await supabase.from('subject').select('*')
+    sub.value = data
+    console.log(sub.value);
+    console.log(error);
+}
+
+onMounted(() => {
+  getSubject()
+})
+
+</script>
+
 <template>
   <div class="">
     <div class="py-4">
@@ -95,99 +139,3 @@
   width: 100%;
 }
 </style>
-
-<script setup>
-import { ref, watch } from 'vue';
-
-const date = ref(null);
-
-const dropdownValue = ref(null);
-const dropdownValues = ref([
-  { name: 'Tidak Tercapai' },
-  { name: 'Tercapai' },
-]);
-
-const tabItems = [
-  {
-    title: "Al-Qur'an",
-    children: [
-      {
-        title: "Juz Amma",
-        hafalan: true,
-        setoran: true,
-      },
-      {
-        title: "Al-Mulk",
-        hafalan: true,
-        setoran: true,
-      },
-      {
-        title: "As-Sajdah",
-        hafalan: true,
-        setoran: true,
-      },
-      {
-        title: "As-Waqiah",
-        hafalan: true,
-        setoran: true,
-      },
-      {
-        title: "As-Rahman",
-        hafalan: true,
-        setoran: true,
-      },
-      {
-        title: "Yasin",
-        hafalan: true,
-        setoran: true,
-      },
-    ]
-  },
-  {
-    title: "Tahlil dan Wirid",
-    children: [
-      {
-        title: "Tahlil",
-        hafalan: true,
-        setoran: true,
-      },
-      {
-        title: "Wirid",
-        hafalan: true,
-        setoran: true,
-      },
-      {
-        title: "Istighosah",
-        hafalan: true,
-        setoran: true,
-      },
-      {
-        title: "Ratibul Haddad",
-        hafalan: false,
-        setoran: true,
-      },
-      {
-        title: "Maulid Barzanji",
-        hafalan: false,
-        setoran: true,
-      }
-    ]
-  },
-  {
-    title: "Sholat dan Wudhu",
-    children: [
-      {
-        title: "Bacaan Sholat",
-        hafalan: true,
-        setoran: true,
-      },
-      {
-        title: "Bacaan Wudhu",
-        hafalan: true,
-        setoran: true,
-      },
-    ]
-  },
-];
-
-</script>
